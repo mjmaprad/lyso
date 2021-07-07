@@ -1,0 +1,23 @@
+#!/bin/bash 
+
+sed -i 's/energy 3700 keV/energy 3800 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r38k.root
+#
+sed -i 's/energy 3800 keV/energy 3900 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r39k.root
+#
+sed -i 's/energy 3900 keV/energy 4000 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r40k.root
+
+
+
+
+
+
+
+
+
+hadd -merge r8t.root r01k.root r02k.root r03k.root r04k.root r05k.root r06k.root r07k.root r08k.root r09k.root r1k.root r2k.root r3k.root r4k.root r5k.root r6k.root r7k.root r8k.root r9k.root r10k.root  r11k.root r12k.root r13k.root r14k.root r15k.root r16k.root r17k.root r18k.root r19k.root r20k.root r21k.root r22k.root r23k.root r24k.root r25k.root r26k.root r27k.root r28k.root r29k.root r30k.root r31k.root r32k.root r33k.root r34k.root r35k.root r36k.root r37k.root r38k.root r39k.root r40k.root

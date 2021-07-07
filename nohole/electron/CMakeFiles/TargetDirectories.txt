@@ -1,0 +1,7 @@
+/home/mostafa/Desktop/lyso/l15mm/nohole/b/CMakeFiles/install/strip.dir
+/home/mostafa/Desktop/lyso/l15mm/nohole/b/CMakeFiles/install/local.dir
+/home/mostafa/Desktop/lyso/l15mm/nohole/b/CMakeFiles/edit_cache.dir
+/home/mostafa/Desktop/lyso/l15mm/nohole/b/CMakeFiles/install.dir
+/home/mostafa/Desktop/lyso/l15mm/nohole/b/CMakeFiles/list_install_components.dir
+/home/mostafa/Desktop/lyso/l15mm/nohole/b/CMakeFiles/rebuild_cache.dir
+/home/mostafa/Desktop/lyso/l15mm/nohole/b/CMakeFiles/cubedoz.dir

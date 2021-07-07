@@ -1,0 +1,333 @@
+double stdv(int entries, double value, double mean);
+void readroot()
+{
+double N_norm=100;
+double N_decay=1769;
+//
+///
+double ent_x=0;
+double ent_y=0;
+double ent_z=0;
+//
+double exit_x=0;
+double exit_y=0;
+double exit_z=0;
+//
+double sci_x=0;
+double sci_y=0;
+double sci_z=0;
+/////////////////
+//////////
+int ent_tot_particle;
+int exit_tot_particle;
+int sim1_particle;
+int sim2_particle;
+
+//////////
+double in_n=0;
+double in_e=0;
+double in_p=0;
+double in_gamma=0;
+double in_alpha=0;
+double tot_in_e=0;
+double tot_in_n=0;
+double tot_in_p=0;
+double tot_in_gamma=0;
+double tot_in_alpha=0;
+//
+double ent_n=0;
+double ent_e=0;
+double ent_p=0;
+double ent_gamma=0;
+double ent_alpha=0;
+double tot_ent_e=0;
+double tot_ent_n=0;
+double tot_ent_p=0;
+double tot_ent_gamma=0;
+double tot_ent_alpha=0;
+//
+double exit_n=0;
+double exit_e=0;
+double exit_p=0;
+double exit_gamma=0;
+double exit_alpha=0;
+double tot_exit_e=0;
+double tot_exit_n=0;
+double tot_exit_p=0;
+double tot_exit_gamma=0;
+double tot_exit_alpha=0;
+//
+double in_spec_n=0;
+double in_spec_e=0;
+double in_spec_p=0;
+double in_spec_gamma=0;
+double in_spec_alpha=0;
+//
+double ent_spec_n=0;
+double ent_spec_e=0;
+double ent_spec_p=0;
+double ent_spec_gamma=0;
+double ent_spec_alpha=0;
+double ent_spec_tot=0;
+
+//
+double exit_spec_n=0;
+double exit_spec_e=0;
+double exit_spec_p=0;
+double exit_spec_gamma=0;
+double exit_spec_alpha=0;
+double exit_spec_tot=0;
+
+//double ave_en_n=0;
+//double ave_en_e=0;
+//double ave_en_p=0;
+//double ave_en_gamma=0;
+//double ave_en_alpha=0;
+///
+double c1=0;
+double c2=0;
+double e1=0;
+double e2=0;
+double tot_c1=0;
+double tot_c2=0;
+double tot_e1=0;
+double tot_e2=0;
+double photon=0;
+double tot_photon=0;
+double edep=0;
+double tot_edep=0;
+double dose=0;
+double tot_dose=0;
+double dose_r=0;
+double tot_dose_r=0;
+double coin_c=0;
+double tot_coin_c=0;
+double coin_e=0;
+double tot_coin_e=0;
+//
+TFile * input=new TFile("dosimetry.root","read");
+TTree * tree=(TTree*) input->Get("dosimetry");
+TH2D *sipm1= new TH2D("", "sipm1", 50, 0, 800, 50, 0, 1500);
+TH2D *sipm2= new TH2D("", "sipm2", 50, 0, 800, 50, 0,1500);
+TH2D *coinc= new TH2D("", "coincidence", 50, 0, 1000, 50, 0, 3);
+//
+TH2D *entxz= new TH2D("", "enteranceXZ", 50, -5.1, 5.1, 50,-4.6,4.6);
+TH2D *entxy= new TH2D("", "enteranceXY", 50, -5.1, 5.1, 50, -2.6,2.6);
+TH2D *entyz= new TH2D("", "enteranceYZ", 50, -2.6, 2.6, 50,-4.6,4.6);
+
+//
+tree->SetBranchAddress("EnterancexAxes",&ent_x);
+tree->SetBranchAddress("EnteranceyAxes",&ent_y);
+tree->SetBranchAddress("EnterancezzAxes",&ent_z);
+//
+tree->SetBranchAddress("ExitxAxes",&exit_x);
+tree->SetBranchAddress("ExityAxes",&exit_y);
+tree->SetBranchAddress("ExitzAxes",&exit_z);
+//
+tree->SetBranchAddress("ScixAxes",&sci_x);
+tree->SetBranchAddress("SciyAxes",&sci_y);
+tree->SetBranchAddress("ScizAxes",&sci_z);
+
+
+
+//tree->SetBranchAddress("electron_count",&in_e);
+//tree->SetBranchAddress("neutron_count",&in_n);
+//tree->SetBranchAddress("proton_count",&in_p);
+//tree->SetBranchAddress("gamma_count",&in_gamma);
+//tree->SetBranchAddress("alpha_count",&in_alpha);
+//
+
+///
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&in_spec_e);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&in_spec_n);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&in_spec_p);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&in_spec_gamma);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&in_spec_alpha);
+//
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&ent_spec_e);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&ent_spec_n);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&ent_spec_p);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&ent_spec_gamma);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&ent_spec_alpha);
+//
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&exit_spec_e);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&exit_spec_n);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&exit_spec_p);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&exit_spec_gamma);
+tree->SetBranchAddress("Incident_electron_spectrum_keV",&exit_spec_alpha);
+//
+tree->SetBranchAddress("TotalEnergyDeposit_keV",&edep);
+tree->SetBranchAddress("Dose_Gy",&dose);
+tree->SetBranchAddress("Dose_Equivalent_Sv",&dose_r);
+tree->SetBranchAddress("Count1",&c1);
+tree->SetBranchAddress("Ekin_eV1",&e1);
+tree->SetBranchAddress("Count2",&c2);
+tree->SetBranchAddress("Ekin_eV2",&e2);
+tree->SetBranchAddress("Photons_count",&photon);
+tree->SetBranchAddress("coincidence_photon",&coin_c);
+tree->SetBranchAddress("coincidence_energy_keV",&coin_e);
+int entries=tree->GetEntries();
+//cout<<"number of entries: "<<entries<<endl;
+cout<<"22Na decay=1769, Therefore, all the printed values were divided by 100 here:"<<endl;
+
+
+////////
+double c_e=0;
+double c_g=0;
+double c_n=0;
+double c_p=0;
+double c_alpha=0;
+
+        for (Int_t i = 1; i <= tree->GetEntries(); i++) {
+        tree->GetEntry(i);
+
+tot_photon+=photon;
+//tot_e+=e;
+//tot_n+=n;
+///tot_p+=p;
+//tot_gamma+=gamma;
+//tot_alpha+=alpha;
+tot_c1+=c1;
+tot_c2+=c2;
+tot_e1+=e1;
+tot_e2+=e2;
+tot_edep+=edep;
+tot_dose+=dose;
+tot_dose_r+=dose_r;
+tot_coin_c+=coin_c;
+tot_coin_e+=coin_e;
+////////////////////////////
+
+//if (spec_n!=0) {ave_en_n+=spec_n; c_n++;}
+//if (spec_e!=0) {ave_en_e+=spec_e; c_e++;}
+//if (spec_p!=0) {ave_en_p+=spec_p; c_p++;}
+//if (spec_gamma!=0) {ave_en_gamma+=spec_gamma; c_g++;}
+//if (spec_alpha!=0) {ave_en_alpha+=spec_alpha; c_alpha++;}
+
+/////////////////////////////////////////////////////////////////////////////////
+//ent_tot_particle
+          
+        if (ent_x!=-9||ent_y!=-9||ent_z!=-9)
+      { //cout<<ent_x<<"  "<<ent_y<<"  "<<ent_z<<endl;
+         entxy->Fill(ent_x*10,ent_y*10 );
+            entyz->Fill(ent_y*10,ent_z*10 );
+                        entxz->Fill(ent_x*10,ent_z*10 );
+
+          }  
+          
+
+
+        if (c1!=0)
+      { //cout<<c1<<"  "<<e1<<endl;
+            sipm1->Fill(c1,e1 );
+          }  
+          
+  
+        if (c2!=0)
+      { //cout<<c2<<"  "<<e1<<endl;
+            sipm2->Fill(c2,e2);
+          }  
+
+
+          
+          if (coin_c!=0)
+      { //cout<<coin_c<<"  "<<coin_e<<endl;
+            coinc->Fill(coin_c,coin_e );
+          }  
+                                
+          
+          
+          
+          }
+         
+    TCanvas *c11 = new TCanvas("c11","Canvas Example",200,10,600,480); 
+        sipm1->Draw("");
+        sipm1->SetMarkerColor(2);
+        sipm1->SetMarkerStyle(3);;
+        sipm1->SetFillColor(11);
+        sipm1->GetXaxis()->SetTitle("Counts");
+        sipm1->GetYaxis()->SetTitle("Energy (eV)");
+TCanvas *c12 = new TCanvas("c12","Canvas Example",200,10,600,480); 
+
+        sipm2->Draw("");
+        sipm2->SetMarkerColor(4);;
+        sipm1->SetMarkerStyle(3);;
+        sipm1->SetFillColor(11);
+        sipm2->GetXaxis()->SetTitle("Counts");
+        sipm2->GetYaxis()->SetTitle("Energy (eV)");
+
+        ////
+        TCanvas *c13 = new TCanvas("c13","Canvas Example",200,10,600,480); 
+
+        coinc->Draw("");
+        coinc->SetMarkerColor(4);;
+        coinc->SetMarkerStyle(3);;
+        coinc->SetFillColor(11);
+        coinc->GetXaxis()->SetTitle("Counts");
+       coinc->GetYaxis()->SetTitle("Energy (keV)");
+               TCanvas *c14 = new TCanvas("c14","Canvas Example",200,10,600,480); 
+
+        entxy->Draw("colz");
+        entxy->SetMarkerColor(4);;
+        entxy->SetMarkerStyle(3);;
+        entxy->SetFillColor(11);
+        entxy->GetXaxis()->SetTitle("x");
+       entxy->GetYaxis()->SetTitle("y");
+        ////
+       TCanvas *c15 = new TCanvas("c15","Canvas Example",200,10,600,480); 
+
+        entyz->Draw("colz");
+        entyz->SetMarkerColor(4);;
+        entyz->SetMarkerStyle(3);;
+        entyz->SetFillColor(11);
+        entyz->GetXaxis()->SetTitle("y");
+       entyz->GetYaxis()->SetTitle("z");
+        //// ////
+       TCanvas *c16 = new TCanvas("c16","Canvas Example",200,10,600,480); 
+
+        entxz->Draw("colz");
+        entxz->SetMarkerColor(4);;
+        entxz->SetMarkerStyle(3);;
+        entxz->SetFillColor(11);
+        entxz->GetXaxis()->SetTitle("x");
+       entxz->GetYaxis()->SetTitle("z");
+        ////
+      //  auto legend = new TLegend(0.1,0.7,0.48,0.9);
+       // legend->AddEntry(sipm1,"Histogram filled with random numbers","f");
+        ////////////////////////////////////////////////////////////////
+
+//TCanvas *sipm=new TCanvas();
+//myGraph1->Draw("apl");
+//TCanvas *c2=new TCanvas();
+//myGraph2->Draw("apl");
+       // cout<<"-----------------------------numbers-----------------------------------------"<<endl;
+      //  cout<<"Total number of particles and energies:"<<endl;
+        //        cout<<tot_e<<" "<<ave_en_e/c_e<<" keV"<<endl;
+         //       cout<<tot_gamma<<" "<<ave_en_gamma/c_g<<" keV"<<endl;
+         //       cout<<tot_p<<" "<<ave_en_p/c_p<<" keV"<<endl;
+         //       cout<<tot_n<<" "<<ave_en_n/c_n<<" keV"<<endl;
+          //      cout<<tot_alpha<<" cpm "<<ave_en_alpha/c_alpha<<" keV"<<endl;
+        cout<<"------------------------tota count and energy in sipms----------------------"<<endl;
+                cout<< std::setprecision(3)<<tot_c1*60/100<<" cpm "<<tot_e1/(100*1000)<<" keV/s"<<endl;
+
+                cout<< std::setprecision(3)<<tot_c2*60/100<<" cpm "<<tot_e2/(100*1000)<<" keV/s"<<endl;
+                cout<<"-------------------------------values/Np_of_event (Np=1769)------------------------------------"<<endl;
+        cout<<"No. of photon:"<< std::setprecision(3)<<tot_photon/(N_decay*N_norm)<<endl;
+        cout<<"energy deposit:"<< std::setprecision(3)<<tot_edep/(N_decay*N_norm)<<" keV"<<endl;
+        cout<<"dose:"<< std::setprecision(3)<<tot_dose/(N_decay*N_norm)<<" Gy"<<endl;
+        cout<<"dose equivalent:"<< std::setprecision(3)<<tot_dose_r/(N_decay*N_norm)<<" Sv"<<endl;        
+        cout<<"dose equivalent rate:"<< std::setprecision(3)<<tot_dose_r*3600/(N_decay*N_norm)<<" Sv/h"<<endl;        
+        cout<<"-----------------------------total values------------------------------------"<<endl;
+        cout<<"No. of photon:"<< std::setprecision(3)<<tot_photon/(N_norm)<<endl;
+        cout<<"Total energy deposit:"<< std::setprecision(3)<<tot_edep/N_norm<<" keV"<<endl;
+        cout<<"Total dose:"<< std::setprecision(3)<<tot_dose/N_norm<<" Gy"<<endl;
+        cout<<"dose equivalent:"<< std::setprecision(3)<<tot_dose_r/(N_norm)<<" Sv"<<endl;        
+        cout<<"Total dose rate:"<< std::setprecision(3)<<tot_dose_r*3600/N_norm<<" Sv/h"<<endl;
+        cout<<"-----------------------------particles------------------------------------"<<endl;
+cout<<"number of Generated particles: "<<entries<<endl;
+
+        cout<<"tot_coin"<<tot_coin_c<<endl;
+}
+
+
+        

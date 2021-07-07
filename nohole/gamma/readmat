@@ -1,0 +1,234 @@
+void readmat(){
+int chain=1000;
+int count=0;
+double edep=0;
+double coin=0;
+double photon=0;
+double sip1_p=0;
+double sip2_p=0;
+double sip1_p_t[69]={0};
+double sip2_p_t[69]={0};
+double edep_t[69]={0};
+double coin_t[69]={0};
+double photon_t[69]={0};
+double edep_t_t[69]={0};
+double coin_t_t[69]={0};
+//
+//TH2D *edep2D= new TH2D("", "edep", 20, 0, 20, 50, 0, 2000);
+//TH2D *coin2D= new TH2D("", "coin", 20, 0, 20, 50, 0, 1.1);
+//TH2D *photon2D= new TH2D("", "photon", 20, 0, 20, 50, 0, 18000);
+//TH2D *sip1p2D= new TH2D("", "sipm1", 20, 0, 20, 50, 0, 300);
+//TH2D *sip2p2D= new TH2D("", "sipm2", 20, 0, 20, 50, 0, 300);
+/////
+
+
+TFile * input=new TFile("r8t.root","read");
+TTree * tree=(TTree*) input->Get("dosimetry");
+cout<<"nuber of entries "<<tree->GetEntries()<<endl;
+tree->SetBranchAddress("Count1",&sip1_p);
+tree->SetBranchAddress("Count2",&sip2_p);
+
+tree->SetBranchAddress("TotalEnergyDeposit_keV",&edep);
+tree->SetBranchAddress("Photons_count",&photon);
+tree->SetBranchAddress("coincidence_photon",&coin);
+
+int chain_c1=0;
+
+        for (Int_t i = 1; i <= tree->GetEntries(); i++) {
+        tree->GetEntry(i);
+
+        if ((i!=chain))
+        {
+                photon_t[count]+=photon*1e-3;
+           if  (edep!=0)    edep_t[count]+=edep*1e-3;
+                sip1_p_t[count]+=sip1_p*1e-3;
+                sip2_p_t[count]+=sip2_p*1e-3;
+
+        if (coin!=0) {coin_t[count]+=1*1e-3;}
+
+        }
+        else
+         {
+
+
+                 chain+=1000;
+
+                 ++count;
+
+
+
+        }
+          }  
+
+double sip1_std[69]={0};
+double sip2_std[69]={0};
+double edep_std[69]={0};
+double photon_std[69]={0};
+double coin_std[69]={0};
+
+///
+double sip1_err[69]={0};
+double sip2_err[69]={0};
+double edep_err[69]={0};
+double photon_err[69]={0};
+double coin_err[69]={0};
+
+//maximum error
+//double sip1_err_m=0;
+//double sip2_err_m=0;
+//double edep_err_m=0;
+//double photon_err_m=0;
+//double coin_err_m=0;
+
+                 chain=1000;
+count=0;
+///////////////////////////////
+//                sip1_std[count]+=sip2_p*1e-3;
+ //               photon_std[count]+=photon*1e-3;
+ //               sip1_std[count]+=edep*1e-3;
+
+        for (Int_t i = 1; i <= tree->GetEntries(); i++) {
+        tree->GetEntry(i);
+        if ((i!=chain))
+        {
+                 //        
+
+        edep_std[count]+=pow(edep_t[count]-edep,2);
+        sip1_std[count]+=pow(sip1_p_t[count]-sip1_p,2);
+        sip2_std[count]+=pow(sip2_p_t[count]-sip2_p,2);
+        photon_std[count]+=pow(photon_t[count]-photon,2);
+       if (coin!=0) coin_std[count]+=pow(coin_t[count]-1,2);
+
+        }
+        else{
+         //        cout<<count<<" "<<edep_t[count]<<" "<<endl; 
+          edep_std[count]=sqrt(edep_std[count]*1e-3);
+         if  (edep_t[count]!=0)  edep_err[count]= edep_std[count]/edep_t[count];
+ sip1_std[count]=sqrt(sip1_std[count]*1e-3);
+ if (sip1_p_t[count]!=0)
+   sip1_err[count]= sip1_p_t[count]*sqrt(sip1_p_t[count]*1e3)/(sip1_p_t[count]*1e3)  ;   //sip1_err[count]= sip1_std[count]/sip1_p_t[count];
+ sip2_std[count]=sqrt(sip2_std[count]*1e-3);
+ if (sip2_p_t[count]!=0)  sip2_err[count]= sip2_p_t[count]*sqrt(sip2_p_t[count]*1e3)/(sip2_p_t[count]*1e3) ;  //sip2_err[count]= sip2_std[count]/sip2_p_t[count];
+ coin_std[count]=sqrt(coin_std[count]*1e-3);
+ if (coin_t[count]!=0)    coin_err[count]= coin_t[count]*sqrt(coin_t[count]*1e3)/(coin_t[count]*1e3) ; //coin_err[count]= coin_std[count]/coin_t[count];
+   photon_std[count]=sqrt(photon_std[count]*1e-3);
+if  (photon_t[count]!=0)   photon_err[count]= photon_t[count]*sqrt(photon_t[count]*1e3)/(photon_t[count]*1e3) ; // photon_err[count]= photon_std[count]/photon_t[count];
+ 
+
+
+////maximum error
+///
+//if (edep_std[count]/edep_t[count]>)
+//if (sqrt(sip1_p_t[count]*1e3)/(sip1_p_t[count]*1e3)>sip1_err_m)
+//if (sqrt(sip2_p_t[count]*1e3)/(sip2_p_t[count]*1e3)>sip2_err_m)
+//if (sqrt(coin_t[count]*1e3)/(coin_t[count]*1e3)>coin_err_m)
+//if (photon_t[count]*sqrt(photon_t[count]*1e3)/(photon_t[count]*1e3)>photon_err_m)
+
+ //
+  //         photon_std[count]=sqrt(photon_std[count]*1e-3);
+ //        if  (photon_t[count]!=0)  photon_err[count]= photon_std[count]/photon_t[count];
+//photon_std[count]=sqrt(photon_t[count]*1e3)/1e3;
+ //if (photon_t[count]!=0)  photon_err[count]=sqrt(photon_std[count]*1e3)/(1e3*photon_t[count]);
+ //coin_std[count]=sqrt(coin_t[count]*1e3)/1e3;
+ //if (coin_t[count]!=0)  coin_err[count]=sqrt(coin_std[count])/(1e3*coin_t[count]);
+       cout<<photon_t[count]<<" "<<photon_err[count]<<endl;    
+
+                ++count;
+                 chain+=1000;
+        }
+  
+        }
+
+
+
+
+          
+int nn = 69;
+double xx[69]={0};
+double tt=0.01;
+for(int i=0;i<10;i++){
+xx[i]=tt;
+tt +=0.01;
+//cout<<xx[i]<<" "<<coin_t[i]<<endl;
+}
+tt =0.2;
+for(int i=10;i<69;i++){
+//
+xx[i]=tt;
+//cout<<xx[i]<<" "<<coin_t[i]<<endl;
+tt +=0.1;
+}
+
+//for (int i=0;i<69;i++){cout<<"  e "<<xx[i]<<"  edep "<<coin_t[i]<<"  error  "<<coin_std[i]<<endl;}
+
+TGraph *edep2D=new TGraphErrors(nn,xx,edep_t,0,edep_std);//new TGraph(nn,xx,edep_t);
+TGraph *coin2D=new TGraphErrors(nn,xx,coin_t,0,coin_err);//new TGraph(nn,xx,coin_t);//new TGraphErrors(nn,xx,coin_t,0,coin_std);
+TGraph *photon2D=new TGraphErrors(nn,xx,photon_t,0,photon_err);//new TGraph(nn,xx,photon_t);
+TGraph *sip1p2D=new TGraphErrors(nn,xx,sip1_p_t,0,sip1_err);//new TGraph(nn,xx,sip1_p_t);
+TGraph *sip2p2D=new TGraphErrors(nn,xx,sip2_p_t,0,sip2_err);//new TGraph(nn,xx,sip2_p_t); 
+
+
+TCanvas *c15 = new TCanvas("c15","Canvas Example",200,10,600,480); 
+
+        edep2D->Draw("");
+        edep2D->SetMarkerColor(4);;
+        edep2D->SetMarkerStyle(3);;
+        edep2D->SetFillColor(11);
+        edep2D->GetXaxis()->SetTitle("E (MeV)");
+       edep2D->GetYaxis()->SetTitle("Energy deposit (keV)");
+                          edep2D->SetTitle(" ");
+
+        //// ////
+       TCanvas *c16 = new TCanvas("c16","Canvas Example",200,10,600,480); 
+
+        coin2D->Draw("");
+        coin2D->SetMarkerColor(4);;
+        coin2D->SetMarkerStyle(3);;
+        coin2D->SetFillColor(11);
+        coin2D->GetXaxis()->SetTitle("E (MeV)");
+       coin2D->GetYaxis()->SetTitle("coincidence counts");
+                   coin2D->SetTitle(" ");
+
+        ////    //// ////
+       TCanvas *c17 = new TCanvas("c17","Canvas Example",600,480); 
+
+        photon2D->Draw("");
+        photon2D->SetMarkerColor(4);;
+        photon2D->SetMarkerStyle(3);;
+        photon2D->SetFillColor(11);
+        photon2D->GetXaxis()->SetTitle("E (MeV)");
+       photon2D->GetYaxis()->SetTitle("photon counts");
+            photon2D->SetTitle(" ");
+
+        TCanvas *c18 = new TCanvas("c18","Canvas Example",200,10,600,480); 
+
+        sip1p2D->Draw("");
+        sip1p2D->SetLineColor(4);
+       // sip1p2D->SetMarkerColor(4);;
+       // sip1p2D->SetMarkerStyle(3);;
+        sip1p2D->SetFillColor(11);
+        sip1p2D->GetXaxis()->SetTitle("E (MeV)");
+       sip1p2D->GetYaxis()->SetTitle("sipm counts"); 
+                   sip1p2D->SetTitle(" ");
+  
+        sip2p2D->Draw("same");
+                sip2p2D->SetLineColor(2);
+       // sip2p2D->SetMarkerColor(8);;
+       // sip2p2D->SetMarkerStyle(3);;
+        sip2p2D->SetFillColor(11);
+        sip2p2D->GetXaxis()->SetTitle("E (MeV)");
+       sip2p2D->GetYaxis()->SetTitle("sipm counts");      
+            sip2p2D->SetTitle(" ");
+          TLegend*  leg = new TLegend(0.1,0.7,0.48,0.9);
+   //leg->SetHeader("The Legend Title");
+ // leg->AddEntry("sip1p2D","Function abs(#frac{sin(x)}{x})","l");
+  // leg->AddEntry("sip2p2D","Graph with error bars","lep");
+  // leg->Draw();
+c15->SaveAs("edep.jpg");
+ c16->SaveAs("coin.jpg");
+c17->SaveAs("photon.jpg");
+c18->SaveAs("sipmcount.jpg");
+
+
+
+}

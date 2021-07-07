@@ -1,0 +1,217 @@
+#!/bin/bash 
+
+
+./cubedoz gun.mac
+mv dosimetry.root r01k.root
+#
+sed -i 's/energy 10 keV/energy 20 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r02k.root
+#
+sed -i 's/energy 20 keV/energy 30 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r03k.root
+#
+sed -i 's/energy 30 keV/energy 40 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r04k.root
+#
+sed -i 's/energy 40 keV/energy 50 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r05k.root
+#
+sed -i 's/energy 50 keV/energy 60 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r06k.root
+#
+sed -i 's/energy 60 keV/energy 70 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r07k.root
+#
+sed -i 's/energy 70 keV/energy 80 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r08k.root
+#
+sed -i 's/energy 80 keV/energy 90 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r09k.root
+#
+sed -i 's/energy 90 keV/energy 100 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r1k.root
+#
+sed -i 's/energy 100 keV/energy 200 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r2k.root
+#
+sed -i 's/energy 200 keV/energy 300 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r3k.root
+#
+sed -i 's/energy 300 keV/energy 400 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r4k.root
+#
+sed -i 's/energy 400 keV/energy 500 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r5k.root
+#
+sed -i 's/energy 500 keV/energy 600 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r6k.root
+#
+sed -i 's/energy 600 keV/energy 700 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r7k.root
+#
+sed -i 's/energy 700 keV/energy 800 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r8k.root
+#
+sed -i 's/energy 800 keV/energy 900 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r9k.root
+#
+sed -i 's/energy 900 keV/energy 1000 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r10k.root
+#
+
+
+#
+sed -i 's/energy 1000 keV/energy 1100 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r11k.root
+#
+sed -i 's/energy 1100 keV/energy 1200 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r12k.root
+#
+sed -i 's/energy 1200 keV/energy 1300 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r13k.root
+#
+sed -i 's/energy 1300 keV/energy 1400 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r14k.root
+#
+sed -i 's/energy 1400 keV/energy 1500 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r15k.root
+#
+sed -i 's/energy 1500 keV/energy 1600 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r16k.root
+#
+sed -i 's/energy 1600 keV/energy 1700 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r17k.root
+#
+sed -i 's/energy 1700 keV/energy 1800 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r18k.root
+#
+sed -i 's/energy 1800 keV/energy 1900 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r19k.root
+#
+sed -i 's/energy 1900 keV/energy 2000 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r20k.root
+
+
+#
+sed -i 's/energy 2000 keV/energy 2100 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r21k.root
+#
+sed -i 's/energy 2100 keV/energy 2200 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r22k.root
+#
+sed -i 's/energy 2200 keV/energy 2300 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r23k.root
+#
+sed -i 's/energy 2300 keV/energy 2400 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r24k.root
+#
+sed -i 's/energy 2400 keV/energy 2500 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r25k.root
+#
+sed -i 's/energy 2500 keV/energy 2600 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r26k.root
+#
+sed -i 's/energy 2600 keV/energy 2700 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r27k.root
+#
+sed -i 's/energy 2700 keV/energy 2800 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r28k.root
+#
+sed -i 's/energy 2800 keV/energy 2900 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r29k.root
+#
+sed -i 's/energy 2900 keV/energy 3000 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r30k.root
+
+
+
+
+
+#
+sed -i 's/energy 3000 keV/energy 3100 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r31k.root
+#
+sed -i 's/energy 3100 keV/energy 3200 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r32k.root
+#
+sed -i 's/energy 3200 keV/energy 3300 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r33k.root
+#
+sed -i 's/energy 3300 keV/energy 3400 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r34k.root
+#
+sed -i 's/energy 3400 keV/energy 3500 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r35k.root
+#
+sed -i 's/energy 3500 keV/energy 3600 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r36k.root
+#
+sed -i 's/energy 3600 keV/energy 3700 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r37k.root
+#
+sed -i 's/energy 3700 keV/energy 3800 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r38k.root
+#
+sed -i 's/energy 3800 keV/energy 3900 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r39k.root
+#
+sed -i 's/energy 3900 keV/energy 4000 keV/g' gun.mac
+./cubedoz gun.mac
+mv dosimetry.root r40k.root
+
+
+
+
+
+
+
+
+
+hadd -merge r8t.root r01k.root r02k.root r03k.root r04k.root r05k.root r06k.root r07k.root r08k.root r09k.root r1k.root r2k.root r3k.root r4k.root r5k.root r6k.root r7k.root r8k.root r9k.root r10k.root  r11k.root r12k.root r13k.root r14k.root r15k.root r16k.root r17k.root r18k.root r19k.root r20k.root r21k.root r22k.root r23k.root r24k.root r25k.root r26k.root r27k.root r28k.root r29k.root r30k.root r31k.root r32k.root r33k.root r34k.root r35k.root r36k.root r37k.root r38k.root r39k.root r40k.root

@@ -1,0 +1,13 @@
+/tracking/verbose 0
+/control/verbose 1
+/run/verbose 0
+#
+/run/initialize
+/control/cout/ignoreThreadsExcept 0
+
+/gps/pos/centre 0. 0 7.61 mm
+/gps/particle gamma
+/gps/energy 6000 keV
+/gps/direction 0 0 -1
+/run/printProgress 100
+/run/beamOn 1000 #17690
