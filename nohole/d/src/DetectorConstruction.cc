@@ -371,7 +371,7 @@ BC408->AddConstProperty("FASTTIMECONSTANT", 41*ns);
 /////BC408->AddConstProperty("SLOWTIMECONSTANT", 41*ns);//????????
 BC408->AddConstProperty("SCINTILLATIONYIELD",33200./MeV);
 BC408->AddConstProperty("YIELDRATIO",1.0);
-BC408->AddConstProperty("RESOLUTIONSCALE",4.41);
+BC408->AddConstProperty("RESOLUTIONSCALE",8);
 
 // fSurface_scint_grease = new G4OpticalSurface("fSurface_scint_grease");
 // fSurface_scint_grease  ->SetType(dielectric_dielectric);
