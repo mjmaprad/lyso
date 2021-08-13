@@ -319,23 +319,23 @@ assert(sizeof(refractiveIndexBC408) == sizeof(EnergyBC408));
 
 G4double absBC408[] =
 {
- 43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1,
-43.1
+ 43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm,
+43.1*cm
 };
 assert(sizeof(absBC408) == sizeof(EnergyBC408));
 
