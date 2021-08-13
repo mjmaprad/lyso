@@ -178,8 +178,9 @@ void RunData::FillPerEvent()
  analysisManager->FillNtupleDColumn(counter++,fcount[0]+fcount[1]);
   analysisManager->FillNtupleDColumn(counter++,(fen[0]+fen[1])/1000);
             }
-             else  analysisManager->FillNtupleDColumn(counter++,0);
-
+             else {analysisManager->FillNtupleDColumn(counter++,0);
+               analysisManager->FillNtupleDColumn(counter++,0);
+             }
     analysisManager->AddNtupleRow();
          
   Reset();
